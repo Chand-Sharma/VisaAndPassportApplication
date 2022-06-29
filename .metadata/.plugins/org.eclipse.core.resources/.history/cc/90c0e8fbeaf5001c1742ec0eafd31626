@@ -1,0 +1,107 @@
+package com.techwave.pvms.Services;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+
+import com.techwave.pvms.model.UserRegistration;
+import com.techwave.pvms.model.UserStateAddress;
+import com.techwave.pvms.repository.IUserRegistration;
+
+
+
+@Service
+public class UserRegistrationService {
+
+	@Autowired
+	IUserRegistration iUserRegistration;
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	
+//	@Autowired
+//	UserStateAddress usa;
+	// User Registration Module
+	int max = 999;
+	int min = 100;
+	int m = 2;
+	int n = 0;
+	String s[] = { "@", "#", "$" };
+
+	public String InsertUser(UserRegistration u) {
+		Integer i = iUserRegistration.getSqe();
+		// generate user id
+		u.setUsername(u.getApplyType() + "-" + i);
+
+		// generate password
+		LocalDateTime now = LocalDateTime.now();
+		int dd = now.getDayOfMonth();
+		Month mm = now.getMonth();
+		int num = (int) (Math.random() * (max - min + 1) + min);
+		int special = (int) (Math.random() * (m - n + 1) + n);
+		String pass = dd + mm.toString().substring(0, 3) + s[special] + num;
+		u.setPassword(pass);
+		System.out.println(pass);
+		
+//		UserStateAddress usa =new UserStateAddress();
+//		
+//		usa.setStateId(usa.getStateId());
+//		usa.setSTATE_NAME(usa.getSTATE_NAME());
+//		
+//		u.setStateName(usa);
+
+		DateTimeFormatter D = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+		LocalDate dob = LocalDate.parse(u.getDob(), D);
+		LocalDate curDate = LocalDate.now();
+		// calculates the difference betwween two dates
+		Period period = Period.between(dob, curDate);
+		System.out.printf("Your age is %d years %d months and %d days.", period.getYears(), period.getMonths(),
+				period.getDays());
+		String s[] = { "Infant", "Children", "Teen", "Adult", "Senior Citizen" };
+		if (period.getYears() >= 0 && period.getYears() <= 1) {
+
+			u.setCitizenType(s[0]);
+		} else if (period.getYears() >= 1 && period.getYears() <= 10) {
+			u.setCitizenType(s[1]);
+		} else if (period.getYears() >= 10 && period.getYears() <= 20) {
+			u.setCitizenType(s[2]);
+		} else if (period.getYears() >= 20 && period.getYears() <= 50) {
+			u.setCitizenType(s[3]);
+		} else {
+			u.setCitizenType(s[4]);
+		}
+		System.out.println(u.getPassword());
+		u.setPassword(passwordEncoder.encode(u.getPassword()));
+		
+		Optional<UserRegistration> U = iUserRegistration.findById(u.getFirstName());
+		if (U.isPresent()) {
+			return "User already exists";
+		} else {
+			iUserRegistration.save(u);
+		}
+
+		//iUserRegistration.save(u);
+		String str = "Dear User\n" + "Your User Id is" + " " + u.getUsername() + " " + "and your password is" + " "
+				+ pass + "\n" + "You are planning for" + " " + u.getApplyType() + " " + "and your citizen type is" + " "
+				+ u.getCitizenType();
+		System.out.println(str);
+		return str;
+	}
+
+	public List<UserRegistration> getUsers() {
+
+		return iUserRegistration.findAll();
+	}
+	
+	
+
+}

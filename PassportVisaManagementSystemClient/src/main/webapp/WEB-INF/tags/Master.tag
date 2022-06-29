@@ -1,0 +1,29 @@
+<%@ tag language="java" pageEncoding="UTF-8"%>
+<%@ attribute name="title" required="true" rtexprvalue="true"%>
+<%@ attribute name="header"%>
+<%@ attribute name="content" fragment="true"%>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>${title}</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/styles/menubar.css" />
+</head>
+<body>
+	<div class="navbar">
+		<a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a> 
+		<a href="#"><i class="fa fa-fw fa-search"></i> About Us</a>
+		<a href="#"><i class="fa fa-fw fa-envelope"></i> Contact Us</a>
+		<a href="ApplyServices"><i class="fa fa-fw fa-user"></i> Login</a>
+		<a href="Registration"><i class="fa fa-fw fa-user"></i> Signup</a>
+		
+	</div>
+	<div><p id="p">Apply for PASSPORT/VISA services</p></div>
+
+</body>
+</html>
+
+

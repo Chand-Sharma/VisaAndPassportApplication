@@ -1,0 +1,278 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="s"%>
+<%@ page isELIgnored="false"%>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="ISO-8859-1">
+<title>User Registration Page</title>
+<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+}
+
+/* body {
+	background-image: url('/resources/images/plane.jpg');
+	font-family: sans-serif;
+	margin-top: 0px;
+	
+} */
+
+#a {
+	color: white;
+}
+
+.a {
+	margin-left: 26px;
+	color: white;
+}
+
+.regform {
+	width: 600px;
+	background-color: none;
+	margin: auto;
+	color: white;
+	padding: 10px 0px 10px 0px;
+	text-align: center;
+	font-color: white;
+	border-radius: 15px 15px 0px opx;
+	height: 30%;
+}
+
+.c {
+	background-color: none;
+	width: 800px;
+	color: white;
+	margin: auto;
+}
+
+form {
+	padding: 5px;
+}
+
+.name {
+	margin-left: 25px;
+	margin-top: 30px;
+	width: 125px;
+	color: white;
+	font-size: 18px;
+	font-weight: 700;
+}
+
+button {
+	background-color: #2196F3;
+	display: block;
+	margin: 20px 0px0px 20px;
+	text-align: center;
+	border: 2px solid #3666473;
+	border-radius: 10px;
+	width: 530px;
+	height: 45px;
+	padding: 0px 0px 0px 0px;
+	margin-top: 25px;
+	margin-left: 26px;
+	color: white;
+	cursor: pointer;
+	transition: 0.25px;
+}
+
+/* .input {
+	border-radius: 10px;
+	height: 40px;
+	width: 400px;
+} */
+
+.p {
+	margin-left: 26px;
+}
+
+#register {
+	
+}
+#body{
+	background-image:url('/resources/images/plane.jpg');
+    opacity:0.5;
+    position:absolute;
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index:-1;
+}
+
+.legend{
+margin-bottom: 5%;
+}
+
+.input{
+margin-left:10%;
+width: 60%;
+
+
+}
+
+.label{
+color: black;
+margin-left: 10%;
+margin-right:5%;
+margin-top: 10%;
+}
+</style>
+</head>
+
+<body>
+	<div id="body"></div>
+	<div class="regform">
+		
+		<h1>Registration Form</h1>
+		
+	</div>
+	
+	<div class="c">
+
+		<form action="/RegistrationUser" method="get">
+			<fieldset>
+				<legend class="legend" >Personalia:</legend>
+					<label class="label" for="fname">First name:</label> 
+					<input type="text" class="input" name="firstName" ><br> <br>
+					
+					<label class="label" for="lname">Last name:</label> 
+					<input type="text" class="input" name="surName" ><br><br>
+					
+					<label class="label" for="dob">Date of Birth:</label> 
+					<input type="text" class="input" name="dob" ><br> <br>
+					
+					<label class="label" for="fname">Select State:</label> 
+					<select id="stateId" name="cars">
+								<option value="volvo">Volvo</option>
+								<option value="saab">Saab</option>
+								<option value="fiat">Fiat</option>
+								<option value="audi">Audi</option>
+						</select><br> <br>
+					
+					<label class="label" for="lname">Select city:</label> 
+					<select id="stateId" name="cars">
+								<option value="volvo">Volvo</option>
+								<option value="saab">Saab</option>
+								<option value="fiat">Fiat</option>
+								<option value="audi">Audi</option>
+						</select><br><br>
+					
+					<label class="label" for="contactNo">contact No:</label> 
+					<input type="text" class="input" name="contactNo" ><br> <br>
+					
+					<label class="label" for="emailAddress">Email address:</label> 
+					<input type="text" class="input" name="emailAddress" ><br><br>
+					
+					<label class="label" for="qualification">Qualification:</label> 
+					<input type="text" class="input" name="qualification" ><br> <br>
+					
+					<label class="label" for="lname">Gender:</label> 
+					<input type="radio"  name="gender" value="Male">Male
+					<input type="radio"  name="gender" value="Female">Female<br><br>
+					
+					<label class="label" for="lname">Apply Type</label>
+					<input type="radio"  name="applyType" value="PASS">Passport
+					<input type="radio"  name="applyType" value="VISA">Visa<br><br>
+					
+					<label class="label" for="hintQuestion">Hint Question:</label> 
+					<input type="text" class="input" name="hintQuestion" ><br><br>
+					
+					<label class="label" for="hintAnswer">Hint Answer:</label> 
+					<input type="text" class="input" name="hintAnswer" ><br><br>
+					
+					
+					<input type="submit" value="Submit">
+			</fieldset>
+			<%-- <div id="name">
+				<table class="name">
+					<tr>
+						<td>First Name:</td>
+						<td><input class="input" type="text" name="firstName"></td>
+					</tr>
+					<tr>
+						<td>Last Name:</td>
+						<td><input class="input" type="text" name="surName"></td>
+					</tr>
+					<tr>
+						<td>Date Of Birth:</td>
+						<td><input class="input" type="text" name="dob"></td>
+					</tr>
+					<tr>
+
+						<td><label for="stateId">Choose State Name:</label></td>
+						<td><select id="stateId" name="cars">
+								<option value="volvo">Volvo</option>
+								<option value="saab">Saab</option>
+								<option value="fiat">Fiat</option>
+								<option value="audi">Audi</option>
+						</select></td>
+
+					</tr>
+					<tr>
+
+						<td><label for="city">Choose State Name:</label></td>
+						<td><select id="city" name="city">
+								<option value="volvo">Volvo</option>
+								<option value="saab">Saab</option>
+								<option value="fiat">Fiat</option>
+								<option value="audi">Audi</option>
+						</select></td>
+
+					</tr>
+					<tr>
+						<td>Contact no:</td>
+						<td><input class="input" type="text" name="contactNo"></td>
+					</tr>
+					<tr>
+						<td>Email Address:</td>
+						<td><input class="input" type="text" name="emailAddress"></td>
+					</tr>
+					<tr>
+						<td>Qualification:</td>
+						<td><input class="input" type="text" name="qualification"></td>
+					</tr>
+					<tr>
+						<td>Gender:</td>
+						<td><input type="radio" name="Gender" value="Male">Male
+							<input type="radio" name="gender" value="Female">Female</td>
+					</tr>
+					<tr>
+						<td>Apply Type:</td>
+						<td><input type="radio" name="applyType" value="PASS">Passport
+							<input type="radio" name="applyType" value="VISA">Visa</td>
+					</tr>
+					<tr>
+						<td>Hint Question:</td>
+						<td><input class="input" type="text" name="hintQuestion"></td>
+					</tr>
+					<tr>
+						<td>. Hint Answer:</td>
+						<td><input class="input" type="text" name="hintAnswer"></td>
+				</table>
+
+				<button type="submit">
+					<h3 id="register">Register</h3>
+				</button>
+				<p>
+				<h3 class="p">Already u have account</h3>
+				<h3 class="a">
+					<a id="a" href="/login">login</a>
+				</h3>
+			</div>
+		</form>
+	</div>
+
+	<div>
+		<s:out value="${userRegistrationObject }"></s:out>
+	</div> --%>
+	</form>
+
+</body>
+</html>

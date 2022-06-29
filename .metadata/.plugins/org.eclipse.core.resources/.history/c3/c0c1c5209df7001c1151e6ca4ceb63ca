@@ -1,0 +1,33 @@
+package com.techwave.pvms.model;
+
+import java.time.LocalDate;
+
+import javax.persistence.Entity;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@Entity
+public class PassRenewal {
+	private String reason;
+	private String userId;
+	private String country;
+	private String state;
+	private String city;
+	private String serviceType;
+	private String bookletType;
+	private String issueDate;
+
+}
+
+

@@ -1,0 +1,9 @@
+package com.techwave.pvms.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.techwave.pvms.model.UserCityAddress;
+
+public interface IUserCity extends JpaRepository<UserCityAddress,String> {
+
+}
